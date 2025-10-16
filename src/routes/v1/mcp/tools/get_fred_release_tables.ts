@@ -29,11 +29,11 @@ export function setupTool<S extends UpstreamMCPServer>(server: S) {
           method: 'GET',
           query: {
             "api_key": args["api_key"] ?? "",
+            "include_observations": args["include_observations"] ?? "",
+            "observation_date": args["observation_date"] ?? "",
+            "release_id": args["release_id"] ?? "",
             "element_id": args["element_id"] ?? "",
             "file_type": args["file_type"] ?? "",
-            "observation_date": args["observation_date"] ?? "",
-            "include_observations": args["include_observations"] ?? "",
-            "release_id": args["release_id"] ?? "",
           },
         })
         .then((response: Response) => response.text());
