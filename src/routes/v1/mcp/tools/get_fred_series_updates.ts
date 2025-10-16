@@ -1,0 +1,74 @@
+import z from "zod";
+import { McpServer as UpstreamMCPServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
+import { httpClient } from "../../../../http_client.js";
+export function setupTool<S extends UpstreamMCPServer>(server: S) {
+  const params = {
+    "Description": z.string().optional().describe("Get the observations or data values for an economic data series."),
+
+    "api_key": z.string().optional().describe("Read API Keys for more information."),
+
+    "file_type": z.string().optional().describe("A key or file extension that indicates the type of file to send."),
+
+    "realtime_start": z.string().optional().describe("The start of the real-time period. For more information, see Real-Time Periods."),
+
+    "realtime_end": z.string().optional().describe("The end of the real-time period. For more information, see Real-Time Periods."),
+
+    "limit": z.string().optional().describe("The maximum number of results to return."),
+
+    "offset": z.string().optional().describe("non-negative integer, optional, default: 0"),
+
+    "filter_value": z.string().optional().describe("The value of the filter_variable attribute to filter results by."),
+
+    "start_time": z.string().optional().describe("Start time for limiting results for a time range, can filter down to minutes"),
+
+    "end_time": z.string().optional().describe("End time for limiting results for a time range, can filter down to minutes"),
+
+  };
+  type ParamsType = z.infer<z.ZodObject<typeof params>>;
+  server.tool(
+    "get_fred_series_updates",
+    "GET /fred/series/updates",
+    params,
+    async (args: ParamsType): Promise<CallToolResult> => {
+      try {
+        const response = await httpClient.call({
+          path: `/fred/series/updates`,
+          method: 'GET',
+          query: {
+            "start_time": args["start_time"] ?? "",
+            "Description": args["Description"] ?? "",
+            "file_type": args["file_type"] ?? "",
+            "realtime_end": args["realtime_end"] ?? "",
+            "filter_value": args["filter_value"] ?? "",
+            "limit": args["limit"] ?? "",
+            "offset": args["offset"] ?? "",
+            "end_time": args["end_time"] ?? "",
+            "api_key": args["api_key"] ?? "",
+            "realtime_start": args["realtime_start"] ?? "",
+          },
+        })
+        .then((response: Response) => response.text());
+
+        return {
+          content: [
+            {
+              type: "text",
+              text: response,
+            },
+          ],
+        };
+      } catch (error) {
+        console.error(`Error executing get_fred_series_updates:`, error);
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Error executing get_fred_series_updates: ${error instanceof Error ? error.message : String(error)}`,
+            },
+          ],
+        };
+      }
+    },
+  );
+}
