@@ -32,14 +32,14 @@ export function setupTool<S extends UpstreamMCPServer>(server: S) {
           path: `/fred/series/vintagedates`,
           method: 'GET',
           query: {
-            "file_type": args["file_type"] ?? "",
-            "realtime_start": args["realtime_start"] ?? "",
-            "limit": args["limit"] ?? "",
             "series_id": args["series_id"] ?? "",
-            "offset": args["offset"] ?? "",
+            "limit": args["limit"] ?? "",
             "api_key": args["api_key"] ?? "",
+            "offset": args["offset"] ?? "",
             "Description": args["Description"] ?? "",
+            "realtime_start": args["realtime_start"] ?? "",
             "realtime_end": args["realtime_end"] ?? "",
+            "file_type": args["file_type"] ?? "",
           },
         })
         .then((response: Response) => response.text());

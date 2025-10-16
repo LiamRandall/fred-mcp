@@ -36,16 +36,16 @@ export function setupTool<S extends UpstreamMCPServer>(server: S) {
           path: `/fred/release/related_tags`,
           method: 'GET',
           query: {
-            "tag_names": args["tag_names"] ?? "",
-            "release_id": args["release_id"] ?? "",
-            "file_type": args["file_type"] ?? "",
+            "api_key": args["api_key"] ?? "",
             "realtime_end": args["realtime_end"] ?? "",
-            "realtime_start": args["realtime_start"] ?? "",
-            "order_by": args["order_by"] ?? "",
-            "sort_order": args["sort_order"] ?? "",
+            "release_id": args["release_id"] ?? "",
             "limit": args["limit"] ?? "",
             "offset": args["offset"] ?? "",
-            "api_key": args["api_key"] ?? "",
+            "realtime_start": args["realtime_start"] ?? "",
+            "sort_order": args["sort_order"] ?? "",
+            "file_type": args["file_type"] ?? "",
+            "tag_names": args["tag_names"] ?? "",
+            "order_by": args["order_by"] ?? "",
           },
         })
         .then((response: Response) => response.text());

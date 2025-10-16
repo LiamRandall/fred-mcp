@@ -23,8 +23,8 @@ export function setupTool<S extends UpstreamMCPServer>(server: S) {
           method: 'GET',
           query: {
             "api_key": args["api_key"] ?? "",
-            "category_id": args["category_id"] ?? "",
             "file_type": args["file_type"] ?? "",
+            "category_id": args["category_id"] ?? "",
           },
         })
         .then((response: Response) => response.text());

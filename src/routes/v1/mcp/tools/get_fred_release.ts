@@ -26,11 +26,11 @@ export function setupTool<S extends UpstreamMCPServer>(server: S) {
           path: `/fred/release`,
           method: 'GET',
           query: {
+            "realtime_end": args["realtime_end"] ?? "",
+            "release_id": args["release_id"] ?? "",
             "api_key": args["api_key"] ?? "",
             "realtime_start": args["realtime_start"] ?? "",
             "file_type": args["file_type"] ?? "",
-            "release_id": args["release_id"] ?? "",
-            "realtime_end": args["realtime_end"] ?? "",
           },
         })
         .then((response: Response) => response.text());
