@@ -36,16 +36,16 @@ export function setupTool<S extends UpstreamMCPServer>(server: S) {
           path: `/fred/series/updates`,
           method: 'GET',
           query: {
-            "realtime_start": args["realtime_start"] ?? "",
-            "realtime_end": args["realtime_end"] ?? "",
-            "Description": args["Description"] ?? "",
-            "filter_value": args["filter_value"] ?? "",
-            "file_type": args["file_type"] ?? "",
-            "start_time": args["start_time"] ?? "",
-            "offset": args["offset"] ?? "",
             "api_key": args["api_key"] ?? "",
+            "realtime_start": args["realtime_start"] ?? "",
+            "offset": args["offset"] ?? "",
             "limit": args["limit"] ?? "",
             "end_time": args["end_time"] ?? "",
+            "filter_value": args["filter_value"] ?? "",
+            "realtime_end": args["realtime_end"] ?? "",
+            "Description": args["Description"] ?? "",
+            "file_type": args["file_type"] ?? "",
+            "start_time": args["start_time"] ?? "",
           },
         })
         .then((response: Response) => response.text());

@@ -32,14 +32,14 @@ export function setupTool<S extends UpstreamMCPServer>(server: S) {
           path: `/fred/series/tags`,
           method: 'GET',
           query: {
-            "sort_order": args["sort_order"] ?? "",
-            "order_by": args["order_by"] ?? "",
-            "Description": args["Description"] ?? "",
-            "api_key": args["api_key"] ?? "",
             "series_id": args["series_id"] ?? "",
-            "file_type": args["file_type"] ?? "",
+            "api_key": args["api_key"] ?? "",
             "realtime_start": args["realtime_start"] ?? "",
             "realtime_end": args["realtime_end"] ?? "",
+            "sort_order": args["sort_order"] ?? "",
+            "file_type": args["file_type"] ?? "",
+            "Description": args["Description"] ?? "",
+            "order_by": args["order_by"] ?? "",
           },
         })
         .then((response: Response) => response.text());

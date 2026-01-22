@@ -28,12 +28,12 @@ export function setupTool<S extends UpstreamMCPServer>(server: S) {
           path: `/fred/source`,
           method: 'GET',
           query: {
-            "source_id": args["source_id"] ?? "",
-            "realtime_start": args["realtime_start"] ?? "",
-            "realtime_end": args["realtime_end"] ?? "",
             "api_key": args["api_key"] ?? "",
-            "Description": args["Description"] ?? "",
+            "realtime_end": args["realtime_end"] ?? "",
             "file_type": args["file_type"] ?? "",
+            "realtime_start": args["realtime_start"] ?? "",
+            "source_id": args["source_id"] ?? "",
+            "Description": args["Description"] ?? "",
           },
         })
         .then((response: Response) => response.text());

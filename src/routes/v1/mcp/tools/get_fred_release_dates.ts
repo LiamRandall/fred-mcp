@@ -26,9 +26,9 @@ export function setupTool<S extends UpstreamMCPServer>(server: S) {
           path: `/fred/release/dates`,
           method: 'GET',
           query: {
-            "realtime_start": args["realtime_start"] ?? "",
-            "api_key": args["api_key"] ?? "",
             "release_id": args["release_id"] ?? "",
+            "api_key": args["api_key"] ?? "",
+            "realtime_start": args["realtime_start"] ?? "",
             "file_type": args["file_type"] ?? "",
             "realtime_end": args["realtime_end"] ?? "",
           },

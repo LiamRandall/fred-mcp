@@ -31,12 +31,12 @@ export function setupTool<S extends UpstreamMCPServer>(server: S) {
           method: 'GET',
           query: {
             "api_key": args["api_key"] ?? "",
-            "offset": args["offset"] ?? "",
-            "last_updated": args["last_updated"] ?? "",
-            "realtime_end": args["realtime_end"] ?? "",
             "realtime_start": args["realtime_start"] ?? "",
-            "file_type": args["file_type"] ?? "",
             "limit": args["limit"] ?? "",
+            "offset": args["offset"] ?? "",
+            "realtime_end": args["realtime_end"] ?? "",
+            "last_updated": args["last_updated"] ?? "",
+            "file_type": args["file_type"] ?? "",
           },
         })
         .then((response: Response) => response.text());
